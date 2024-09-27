@@ -9,9 +9,10 @@ document.getElementById('doseForm').addEventListener('submit', function(e) {
         const totalDose = weight * dose;  // Total dose in mg
         const volumeInMl = (totalDose / syrupConcentration) * 5; // Volume in mL
 
+        // Display the total dose and the volume of syrup
         document.getElementById('result').innerHTML = `
-            Recommended paracetamol dose: ${totalDose} mg<br>
-            Volume of syrup required: ${volumeInMl.toFixed(2)} mL
+            <p>Total dose: ${totalDose.toFixed(2)} mg</p>
+            <p>Volume of syrup required: ${volumeInMl.toFixed(2)} mL</p>
         `;
     } else {
         document.getElementById('result').textContent = 'Please enter a valid weight.';
