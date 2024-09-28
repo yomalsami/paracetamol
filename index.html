@@ -30,7 +30,7 @@
             color: #28a745;
             margin-bottom: 20px;
         }
-        label {
+        label, select {
             font-size: 16px;
             margin-bottom: 10px;
             display: block;
@@ -72,18 +72,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Paracetamol Dose Calculator</h1>
+        <!-- Language Selector -->
+        <label for="language">Select Language:</label>
+        <select id="language">
+            <option value="en">English</option>
+            <option value="si">Sinhala</option>
+            <option value="ta">Tamil</option>
+        </select>
+
+        <h1 id="heading">Paracetamol Dose Calculator</h1>
         <form id="doseForm">
-            <label for="weight">Child's Weight (kg):</label>
+            <label for="weight" id="weightLabel">Child's Weight (kg):</label>
             <input type="number" id="weight" placeholder="Enter weight in kg" required>
 
-            <button type="submit">Calculate Dose</button>
+            <button type="submit" id="calculateBtn">Calculate Dose</button>
         </form>
         <div class="result" id="result"></div>
-        <div class="note">
+        <div class="note" id="note">
             Note: Paracetamol syrup contains 120mg in 5mL.
         </div>
-        <div class="credits">
+        <div class="credits" id="credits">
             Made with ❤️ by Dr. Yomal
         </div>
     </div>
