@@ -1,25 +1,31 @@
-// Language Data for English, Sinhala, Tamil
+// Language Data for English, Sinhala, Tamil (including results)
 const translations = {
     en: {
         heading: "Paracetamol Dose Calculator",
         weightLabel: "Child's Weight (kg):",
         calculateBtn: "Calculate Dose",
         note: "Note: Paracetamol syrup contains 120mg in 5mL.",
-        credits: "Made with ❤️ by Dr. Yomal"
+        credits: "Made with ❤️ by Dr. Yomal",
+        resultTotalDose: "Total dose:",
+        resultVolume: "Volume of syrup required:"
     },
     si: {
         heading: "පැරසිටමෝල් මාත්‍රාව ගණනය කරන්න",
         weightLabel: "ළමයාගේ බර (කි.ග්‍රෑ):",
         calculateBtn: "මාත්‍රාව ගණනය කරන්න",
-        note: "සටහන: පැරසිටමෝල් සිරප් මිලිලීටර් 5ක පැරසිටමෝල් මිලිග්‍රෑම් 120ක් අඩංගු වේ.",
-        credits: "මෙය ❤️ නිර්මාණය කළේ Dr. Yomal විසිනි"
+        note: "සටහන: පැරසිටමෝල් සිරප් මිලිලීටර් 5කට මිලිග්‍රෑම් 120ක් අඩංගු වේ.",
+        credits: "මෙය ❤️ නිරමාණය කළේ Dr. Yomal විසිනි",
+        resultTotalDose: "සම්පූර්ණ මාත්‍රාව:",
+        resultVolume: "අවශ්‍ය සිරප් පරිමාව:"
     },
     ta: {
         heading: "பாராசிடமால் அளவை கணக்கிடுங்கள்",
         weightLabel: "குழந்தையின் எடை (கிலோ):",
         calculateBtn: "அளவை கணக்கிடுங்கள்",
         note: "குறிப்பு: 5மில்லி பாராசிடமால் திரவத்தில் 120மி.கி. உள்ளது.",
-        credits: "❤️ உடன் உருவாக்கியவர் Dr. Yomal"
+        credits: "❤️ உடன் உருவாக்கியவர் Dr. Yomal",
+        resultTotalDose: "மொத்த அளவு:",
+        resultVolume: "தேவையான திரவ அளவு:"
     }
 };
 
@@ -39,7 +45,14 @@ document.getElementById('language').addEventListener('change', function() {
 });
 
 // Default to English on load
-updateLanguage('en');
+let currentLanguage = 'en';
+updateLanguage(currentLanguage);
+
+// Update current language on change
+document.getElementById('language').addEventListener('change', function() {
+    currentLanguage = this.value;
+    updateLanguage(currentLanguage);
+});
 
 // Handle form submission
 document.getElementById('doseForm').addEventListener('submit', function(e) {
@@ -55,10 +68,10 @@ document.getElementById('doseForm').addEventListener('submit', function(e) {
         const totalDose = weight * dose;  // Calculate total dose in mg
         const volumeInMl = (totalDose / syrupConcentration) * 5;  // Calculate volume in mL
 
-        // Display the total dose and the volume of syrup
+        // Display the total dose and the volume of syrup in the selected language
         document.getElementById('result').innerHTML = `
-            <p>Total dose: ${totalDose.toFixed(2)} mg</p>
-            <p>Volume of syrup required: ${volumeInMl.toFixed(2)} mL</p>
+            <p>${translations[currentLanguage].resultTotalDose} ${totalDose.toFixed(2)} mg</p>
+            <p>${translations[currentLanguage].resultVolume} ${volumeInMl.toFixed(2)} mL</p>
         `;
     } else {
         document.getElementById('result').textContent = 'Please enter a valid weight.';
